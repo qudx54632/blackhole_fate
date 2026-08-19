@@ -178,6 +178,7 @@ function solveEffectiveCornerAndSaveChunks(
     chunkNumber = 0
     segmentZPlus = Float64[zPlusAll[1]]
     nextSaveZPlus = zPlusAll[1] + saveEveryZPlus
+    nextReportZPlus = zPlusAll[1] + 10.0
 
     for j in 1:(length(zPlusAll) - 1)
         zPlusOld = zPlusAll[j]
@@ -198,6 +199,22 @@ function solveEffectiveCornerAndSaveChunks(
         push!(ZColumns, ZNew)
         push!(xColumns, xNew)
         push!(segmentZPlus, zPlusNew)
+
+        if zPlusNew >= nextReportZPlus
+            println(
+                "zPlus reached ",
+                round(zPlusNew; digits = 4),
+                " / ",
+                zPlusAll[end],
+                ", columns = ",
+                length(segmentZPlus),
+                ", chunks = ",
+                length(chunkPaths),
+            )
+            while zPlusNew >= nextReportZPlus
+                nextReportZPlus += 10.0
+            end
+        end
 
         if zPlusNew >= nextSaveZPlus
             chunkNumber += 1

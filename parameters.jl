@@ -29,8 +29,8 @@ gridMiddleRadiusFactor = 1.5
 gridFineRadiusFactor = 1.125
 
 # Resolution in each part of the piecewise zMinus grid.
-deltaMinusFar = 10.0
-deltaMinusMiddle = 1.0
+deltaMinusFar = 0.1
+deltaMinusMiddle = 0.1
 deltaMinusTransition = 0.01
 deltaMinusFine = 0.01
 
